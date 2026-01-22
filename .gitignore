@@ -36,4 +36,4 @@ yarn-error.*
 
 # Ignore the Windows UUS State folder
 C:/ProgramData/Microsoft/Windows/UUS/State/
-
+.env
