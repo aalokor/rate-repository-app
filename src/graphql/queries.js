@@ -29,7 +29,15 @@ export const SIGN_IN = gql`
       }
     ) {
       accessToken
-      expiresAt
     }
   }
 `;
+
+export const USER = gql`
+  query Me{
+    me {
+      id
+      username
+    }
+  }
+`

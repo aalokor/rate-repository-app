@@ -1,6 +1,9 @@
 import { View, StyleSheet, ScrollView } from 'react-native';
 import Constants from 'expo-constants';
 import AppBarTab from './AppBarTab';
+import { useQuery } from '@apollo/client';
+import { USER } from '../graphql/queries';
+import Text from './Text';
 
 const styles = StyleSheet.create({
   container: {
@@ -13,11 +16,27 @@ const styles = StyleSheet.create({
 })
 
 const AppBar = () => {
+  const { data, loading } = useQuery(USER);
+
+  if (loading) {
+    return (
+    <View style={styles.container}>
+        <Text color="secondary" fontWeight="bold">Loading...</Text>
+    </View>
+  );
+  }
+
+  const loggedIn = data?.me ? true : false;
+
   return (
     <View style={styles.container}>
       <ScrollView horizontal>
         <AppBarTab label="Repositories" to="/"/>
-        <AppBarTab label="Sign in" to="/signin"/>
+        {loggedIn ? (
+          <AppBarTab label="Sign out" to="/signout" />
+        ) : (
+          <AppBarTab label="Sign in" to="/signin" />
+        )}
       </ScrollView>
     </View>
   );
