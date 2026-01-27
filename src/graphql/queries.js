@@ -40,4 +40,69 @@ export const USER = gql`
       username
     }
   }
-`
+`;
+
+export const GET_REPOSITORY = gql`
+  query GetRepository($id: ID!) {
+    repository(id: $id) {
+      id
+      fullName
+      description
+      ownerAvatarUrl
+      language
+      stargazersCount
+      forksCount
+      reviewCount
+      ratingAverage
+      url
+      reviews {
+        edges {
+          node {
+            id
+            text
+            rating
+            createdAt
+            user {
+              id
+              username
+            }
+          }
+        }
+      }
+    }
+  }
+`;
+
+export const CREATE_REVIEW = gql`
+  mutation CreateReview($review: CreateReviewInput!) {
+    createReview(review: $review) {
+      id
+      rating
+      text
+      repositoryId
+      userId
+      createdAt
+    }
+  }
+`;
+
+export const CREATE_USER = gql`
+  mutation CreateUser($user: CreateUserInput!) {
+    createUser(user: $user) {
+      id
+      createdAt
+      username
+      reviewCount
+      reviews {
+        edges {
+          node {
+            id
+            createdAt
+            rating
+            text
+          }
+        }
+      }
+    }
+  }
+`;
