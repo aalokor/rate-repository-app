@@ -1,24 +1,33 @@
 import { gql } from '@apollo/client';
 
 export const GET_REPOSITORIES = gql`
-  query GetRepositories{
-    repositories {
-    	edges {
-      	node {
-					id
-        	fullName
-        	description
-        	ownerAvatarUrl
-        	language
-        	stargazersCount
-        	forksCount
-        	reviewCount
-        	ratingAverage
-      	}
-    	}
-  	}
-	}
-`; 
+  query GetRepositories(
+    $orderBy: AllRepositoriesOrderBy
+    $orderDirection: OrderDirection
+    $searchKeyword: String
+  ) {
+    repositories(
+      orderBy: $orderBy
+      orderDirection: $orderDirection
+      searchKeyword: $searchKeyword
+    ) {
+      edges {
+        node {
+          id
+          fullName
+          description
+          ownerAvatarUrl
+          language
+          stargazersCount
+          forksCount
+          reviewCount
+          ratingAverage
+        }
+      }
+    }
+  }
+`;
+
 
 export const SIGN_IN = gql`
   mutation Authenticate($username: String!, $password: String!) {
@@ -34,10 +43,24 @@ export const SIGN_IN = gql`
 `;
 
 export const USER = gql`
-  query Me{
+  query Me($includeReviews: Boolean = false) {
     me {
       id
       username
+      reviews @include(if: $includeReviews) {
+        edges {
+          node {
+            id
+            text
+            rating
+            createdAt
+            user {
+              id
+              username
+            }
+          }
+        }
+      }
     }
   }
 `;

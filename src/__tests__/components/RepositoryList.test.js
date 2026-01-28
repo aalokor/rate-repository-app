@@ -1,9 +1,9 @@
 import { render, screen, within } from '@testing-library/react-native';
-import { RepositoryListContainer } from "../../components/RepositoryList";
+import { RepositoryListContainer } from "../../components/RepositoryList/RepositoryList";
 
 describe('RepositoryList', () => {
   describe('RepositoryListContainer', () => {
-    it('renders repository information correctly', () => {
+    it('renders repository information correctly', async () => {
       const repositories_raw = {
         totalCount: 8,
         pageInfo: {
@@ -49,13 +49,13 @@ describe('RepositoryList', () => {
 			const repositories = repositories_raw.edges.map(edge => edge.node);
 
 			render(
-				<RepositoryListContainer
-					repositories={repositories}
-					loading={false}
-				/>
-			);
+        <RepositoryListContainer
+          repositories={repositories}
+          loading={false}
+        />
+      );
 
-      const repositoryItems = screen.getAllByTestId('repositoryItem');
+      const repositoryItems = await screen.findAllByTestId('repositoryItem');
       const [firstRepositoryItem, secondRepositoryItem] = repositoryItems;
 
 			const firstItem = within(firstRepositoryItem);

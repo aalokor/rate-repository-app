@@ -39,7 +39,7 @@ const CreateReview = () => {
         },
       });
 
-      const repositoryId = result.createReview.repositoryId;
+      const repositoryId = result?.data?.createReview?.repositoryId;
       if (repositoryId) {
         navigate(`/repository/${repositoryId}`);
       }
