@@ -1,8 +1,19 @@
-import { FlatList } from 'react-native';
+import { FlatList, StyleSheet, View } from 'react-native';
 import { useQuery } from '@apollo/client';
 import { USER } from '../graphql/queries';
 import Text from './Text';
 import ReviewItem from './SingleRepository/ReviewItem';
+
+const styles = StyleSheet.create({
+  separator: {
+    height: 10,
+  },
+  loadingContainer: {
+    padding: 20,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+});
 
 const MyReviews = () => {
   const { data, loading, refetch } = useQuery(USER, {
@@ -11,21 +22,31 @@ const MyReviews = () => {
   });
 
   if (loading) {
-    return <Text fontWeight="bold">Loading...</Text>;
+    return (
+      <View style={styles.loadingContainer}>
+        <Text fontWeight="bold">Loading...</Text>
+      </View>
+    );
   }
 
   const reviews = data?.me?.reviews?.edges
-    ? data.me.reviews.edges.map(edge => edge.node)
+    ? data.me.reviews.edges.map((edge) => edge.node)
     : [];
 
   if (reviews.length === 0) {
-    return <Text fontWeight="bold">No reviews yet</Text>;
+    return (
+      <View style={styles.loadingContainer}>
+        <Text fontWeight="bold">No reviews yet.</Text>
+      </View>
+    );
   }
 
   return (
     <FlatList
       data={reviews}
-      renderItem={({ item }) => <ReviewItem review={item} refetch={refetch} myReview={true} />}
+      renderItem={({ item }) => (
+        <ReviewItem review={item} refetch={refetch} myReview={true} />
+      )}
       keyExtractor={(item) => item.id}
     />
   );

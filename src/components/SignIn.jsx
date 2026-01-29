@@ -52,21 +52,16 @@ export const SignInContainer = ({ onSubmit }) => {
 
   return (
     <View style={styles.container}>
-      <FormField 
-        formik={formik} 
-        name="username" 
-        placeholder="Username" 
-      />
-      <FormField 
-        formik={formik} 
-        name="password" 
-        placeholder="Password" 
+      <FormField formik={formik} name="username" placeholder="Username" />
+      <FormField
+        formik={formik}
+        name="password"
+        placeholder="Password"
         secureTextEntry
       />
       <Button label="Sign in" onPress={formik.handleSubmit} />
     </View>
   );
-
 };
 
 export default SignIn;

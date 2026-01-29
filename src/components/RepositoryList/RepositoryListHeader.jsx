@@ -8,10 +8,10 @@ const styles = StyleSheet.create({
     padding: 10,
   },
   picker: {
-    marginTop: 10, 
+    marginTop: 10,
   },
   searchInput: {
-    borderRadius: 4, 
+    borderRadius: 4,
     marginBottom: 10,
   },
 });
@@ -23,14 +23,11 @@ const RepositoryListHeader = ({ order, setOrder, search, setSearch }) => (
       value={search}
       onChangeText={(text) => setSearch(text)}
       style={styles.searchInput}
-      icon="magnify"                  
-      clearIcon="close"               
+      icon="magnify"
+      clearIcon="close"
       onIconPress={() => setSearch('')}
     />
-    <Picker
-      selectedValue={order}
-      onValueChange={(value) => setOrder(value)}
-    >
+    <Picker selectedValue={order} onValueChange={(value) => setOrder(value)}>
       <Picker.Item label="Latest repositories" value="createdAt" />
       <Picker.Item label="Highest rated repositories" value="ratingDesc" />
       <Picker.Item label="Lowest rated repositories" value="ratingAsc" />
@@ -38,4 +35,4 @@ const RepositoryListHeader = ({ order, setOrder, search, setSearch }) => (
   </View>
 );
 
-export default RepositoryListHeader
+export default RepositoryListHeader;

@@ -18,11 +18,17 @@ const styles = StyleSheet.create({
   },
   errorText: {
     color: '#d73a4a',
-    marginTop: 4,  
+    marginTop: 4,
   },
 });
 
-const FormField = ({ formik, name, placeholder, secureTextEntry = false, ...props }) => {
+const FormField = ({
+  formik,
+  name,
+  placeholder,
+  secureTextEntry = false,
+  ...props
+}) => {
   const hasError = formik.touched[name] && formik.errors[name];
 
   return (
@@ -40,6 +46,5 @@ const FormField = ({ formik, name, placeholder, secureTextEntry = false, ...prop
     </View>
   );
 };
-
 
 export default FormField;

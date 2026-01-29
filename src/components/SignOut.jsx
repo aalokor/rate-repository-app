@@ -12,11 +12,11 @@ const SignOut = () => {
     const logout = async () => {
       await authStorage.removeAccessToken();
       await apolloClient.resetStore();
-      navigate("/signin")
+      navigate('/signin');
     };
 
     logout();
   }, []);
 };
 
-export default SignOut
+export default SignOut;

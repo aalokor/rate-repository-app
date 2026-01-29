@@ -12,7 +12,7 @@ const styles = StyleSheet.create({
   },
 });
 
-const Stat = ({ value, label }) => ( 
+const Stat = ({ value, label }) => (
   <View style={styles.item}>
     <Text fontWeight="bold">{value}</Text>
     <Text color="textSecondary">{label}</Text>
@@ -21,22 +21,10 @@ const Stat = ({ value, label }) => (
 
 const RepositoryBody = ({ repository, formatCount }) => (
   <View style={styles.row}>
-    <Stat
-      value={formatCount(repository.stargazersCount)}
-      label="Stars"
-    />
-    <Stat
-      value={formatCount(repository.forksCount)}
-      label="Forks"
-    />
-    <Stat
-      value={formatCount(repository.reviewCount)}
-      label="Reviews"
-    />
-    <Stat
-      value={formatCount(repository.ratingAverage)}
-      label="Rating"
-    />
+    <Stat value={formatCount(repository.stargazersCount)} label="Stars" />
+    <Stat value={formatCount(repository.forksCount)} label="Forks" />
+    <Stat value={formatCount(repository.reviewCount)} label="Reviews" />
+    <Stat value={formatCount(repository.ratingAverage)} label="Rating" />
   </View>
 );
 

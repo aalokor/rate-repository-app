@@ -3,7 +3,7 @@ import { FlatList, View, StyleSheet, Pressable } from 'react-native';
 import { useNavigate } from 'react-router-native';
 import { useDebounce } from 'use-debounce';
 import RepositoryItem from '../RepositoryItem/RepositoryItem';
-import useRepositories from '../../hooks/useRepositories'
+import useRepositories from '../../hooks/useRepositories';
 import RepositoryListHeader from './RepositoryListHeader';
 import Text from '../Text';
 
@@ -12,9 +12,9 @@ const styles = StyleSheet.create({
     height: 10,
   },
   loadingContainer: {
-    padding: 20,           
-    alignItems: 'center',  
-    justifyContent: 'center', 
+    padding: 20,
+    alignItems: 'center',
+    justifyContent: 'center',
   },
 });
 
@@ -27,7 +27,17 @@ const RepositoryList = () => {
   const [debouncedSearch] = useDebounce(search, 500);
   const { repositories, loading } = useRepositories(order, debouncedSearch);
 
-  return <RepositoryListContainer repositories={repositories} loading={loading} order={order} setOrder={setOrder} search={search} setSearch={setSearch} navigate={navigate} />;
+  return (
+    <RepositoryListContainer
+      repositories={repositories}
+      loading={loading}
+      order={order}
+      setOrder={setOrder}
+      search={search}
+      setSearch={setSearch}
+      navigate={navigate}
+    />
+  );
 };
 
 export class RepositoryListContainer extends React.Component {
@@ -80,6 +90,5 @@ RepositoryListContainer.defaultProps = {
   repositories: [],
   loading: false,
 };
-
 
 export default RepositoryList;

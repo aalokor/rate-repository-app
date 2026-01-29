@@ -30,7 +30,7 @@ const useRepositories = (order, search) => {
   });
 
   const repositories = data
-    ? data.repositories.edges.map(edge => edge.node)
+    ? data.repositories.edges.map((edge) => edge.node)
     : [];
 
   return {

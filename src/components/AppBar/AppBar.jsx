@@ -13,17 +13,19 @@ const styles = StyleSheet.create({
     paddingVertical: 15,
     flexDirection: 'row',
   },
-})
+});
 
 const AppBar = () => {
   const { data, loading } = useQuery(USER);
 
   if (loading) {
     return (
-    <View style={styles.container}>
-        <Text color="secondary" fontWeight="bold">Loading...</Text>
-    </View>
-  );
+      <View style={styles.container}>
+        <Text color="secondary" fontWeight="bold">
+          Loading...
+        </Text>
+      </View>
+    );
   }
 
   const loggedIn = data?.me ? true : false;
@@ -31,11 +33,11 @@ const AppBar = () => {
   return (
     <View style={styles.container}>
       <ScrollView horizontal>
-        <AppBarTab label="Repositories" to="/"/>
+        <AppBarTab label="Repositories" to="/" />
         {loggedIn ? (
           <>
-            <AppBarTab label="Create a review" to="/create_review"/>
-            <AppBarTab label="My reviews" to="/my_reviews"/>
+            <AppBarTab label="Create a review" to="/create_review" />
+            <AppBarTab label="My reviews" to="/my_reviews" />
             <AppBarTab label="Sign out" to="/sign_out" />
           </>
         ) : (

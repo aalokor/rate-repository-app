@@ -16,9 +16,20 @@ const styles = StyleSheet.create({
 });
 
 const validationSchema = yup.object().shape({
-  username: yup.string().required('Username is required').min(5, 'Username length must be at least 5 characters').max(30, 'Username length cannot be more than 30 characters'),
-  password: yup.string().required('Password is required').min(5, 'Password length must be at least 5 characters').max(50, 'Password length cannot be more than 50 characters'),
-  passwordConfirmation: yup.string().required('Password confirmation is required').oneOf([yup.ref('password'), null], 'Passwords must match'),
+  username: yup
+    .string()
+    .required('Username is required')
+    .min(5, 'Username length must be at least 5 characters')
+    .max(30, 'Username length cannot be more than 30 characters'),
+  password: yup
+    .string()
+    .required('Password is required')
+    .min(5, 'Password length must be at least 5 characters')
+    .max(50, 'Password length cannot be more than 50 characters'),
+  passwordConfirmation: yup
+    .string()
+    .required('Password confirmation is required')
+    .oneOf([yup.ref('password'), null], 'Passwords must match'),
 });
 
 const SignUp = () => {
@@ -51,7 +62,7 @@ const SignUp = () => {
       console.log(e);
     }
   };
-  
+
   return <SignUpContainer onSubmit={onSubmit} />;
 };
 
@@ -70,27 +81,22 @@ export const SignUpContainer = ({ onSubmit }) => {
 
   return (
     <View style={styles.container}>
-      <FormField 
-        formik={formik} 
-        name="username" 
-        placeholder="Username" 
-      />
-      <FormField 
-        formik={formik} 
-        name="password" 
-        placeholder="Password" 
+      <FormField formik={formik} name="username" placeholder="Username" />
+      <FormField
+        formik={formik}
+        name="password"
+        placeholder="Password"
         secureTextEntry
       />
-      <FormField 
-        formik={formik} 
-        name="passwordConfirmation" 
-        placeholder="Password cofirmation" 
+      <FormField
+        formik={formik}
+        name="passwordConfirmation"
+        placeholder="Password cofirmation"
         secureTextEntry
       />
       <Button label="Sign up" onPress={formik.handleSubmit} />
     </View>
   );
-
 };
 
 export default SignUp;

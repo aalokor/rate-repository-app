@@ -1,7 +1,7 @@
 import { StyleSheet, View } from 'react-native';
 import RepositoryList from './RepositoryList/RepositoryList';
-import SignIn from './SignIn'
-import SignOut from './SignOut'
+import SignIn from './SignIn';
+import SignOut from './SignOut';
 import SignUp from './SignUp';
 import AppBar from './AppBar/AppBar';
 import SingleRepository from './SingleRepository/SingleRepository';

@@ -1,11 +1,16 @@
-import { render, screen, fireEvent, waitFor } from '@testing-library/react-native';
-import { SignInContainer } from "../../components/SignIn";
+import {
+  render,
+  screen,
+  fireEvent,
+  waitFor,
+} from '@testing-library/react-native';
+import { SignInContainer } from '../../components/SignIn';
 
 describe('SignIn', () => {
   describe('SignInContainer', () => {
     it('calls onSubmit function with correct arguments when a valid form is submitted', async () => {
       const onSubmit = jest.fn();
-			render(<SignInContainer onSubmit={onSubmit} />);
+      render(<SignInContainer onSubmit={onSubmit} />);
 
       fireEvent.changeText(screen.getByPlaceholderText('Username'), 'admin');
       fireEvent.changeText(screen.getByPlaceholderText('Password'), 'admin');

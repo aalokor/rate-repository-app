@@ -4,7 +4,7 @@ import useAuthStorage from '../hooks/useAuthStorage';
 
 const useSignIn = () => {
   const [mutate, result] = useMutation(SIGN_IN);
-	const authStorage = useAuthStorage();
+  const authStorage = useAuthStorage();
   const apolloClient = useApolloClient();
 
   const signIn = async ({ username, password }) => {

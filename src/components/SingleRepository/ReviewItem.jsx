@@ -1,8 +1,8 @@
 import { View, StyleSheet, Pressable, Alert } from 'react-native';
 import { useNavigate } from 'react-router-native';
 import { useMutation } from '@apollo/client';
-import { DELETE_REVIEW  } from '../../graphql/queries';
-import Text from '../Text'
+import { DELETE_REVIEW } from '../../graphql/queries';
+import Text from '../Text';
 
 const styles = StyleSheet.create({
   container: {
@@ -40,8 +40,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     marginRight: 10,
-    paddingHorizontal: 12, 
-    flex: 1, 
+    paddingHorizontal: 12,
+    flex: 1,
   },
   viewButton: {
     backgroundColor: '#0366d6',
@@ -52,7 +52,7 @@ const styles = StyleSheet.create({
 });
 
 const ReviewItem = ({ review, refetch = () => {}, myReview = false }) => {
-  const [deleteReview] = useMutation(DELETE_REVIEW)
+  const [deleteReview] = useMutation(DELETE_REVIEW);
   const navigate = useNavigate();
 
   const formatDate = (createdAt) => {
@@ -63,7 +63,7 @@ const ReviewItem = ({ review, refetch = () => {}, myReview = false }) => {
     const year = date.getFullYear();
 
     return `${day}.${month}.${year}`;
-  }
+  };
 
   const handleDeleteReview = async (id) => {
     try {
@@ -78,16 +78,16 @@ const ReviewItem = ({ review, refetch = () => {}, myReview = false }) => {
 
   const confirmDelete = (id) => {
     Alert.alert(
-      'Delete Review',  
-      'Are you sure you want to delete this review?', 
+      'Delete Review',
+      'Are you sure you want to delete this review?',
       [
         { text: 'Cancel', style: 'cancel' },
-        { 
-          text: 'Delete', 
-          style: 'destructive',  
+        {
+          text: 'Delete',
+          style: 'destructive',
           onPress: () => handleDeleteReview(id),
         },
-      ]
+      ],
     );
   };
 
@@ -98,40 +98,41 @@ const ReviewItem = ({ review, refetch = () => {}, myReview = false }) => {
   };
 
   return (
-  <View style={styles.container}>
-    <View style={styles.row}>
-      <View style={styles.rating}>
-        <Text fontWeight="bold" style={styles.ratingText}>
-          {review.rating}
-        </Text>
-      </View>
-      <View style={styles.info}>
-        <Text fontWeight="bold">{review.user.username}</Text>
-        <Text color="textSecondary">
-          {formatDate(review.createdAt)}
-        </Text>
-        <Text style={{ marginTop: 6 }}>
-          {review.text}
-        </Text>
-        {myReview && (
-          <View style={styles.buttonsRow}>
-            <Pressable
-              style={[styles.button, styles.viewButton]}
-              onPress={navigateToRepository}>
-              <Text fontWeight="bold" color="secondary">View Repository</Text>
-            </Pressable>
-            <Pressable
-              style={[styles.button, styles.deleteButton]}
-              onPress={() => confirmDelete(review.id)}
-            >
-              <Text fontWeight="bold" color="secondary">Delete Review</Text>
-            </Pressable>
-          </View>
-        )}
+    <View style={styles.container}>
+      <View style={styles.row}>
+        <View style={styles.rating}>
+          <Text fontWeight="bold" style={styles.ratingText}>
+            {review.rating}
+          </Text>
+        </View>
+        <View style={styles.info}>
+          <Text fontWeight="bold">{review.user.username}</Text>
+          <Text color="textSecondary">{formatDate(review.createdAt)}</Text>
+          <Text style={{ marginTop: 6 }}>{review.text}</Text>
+          {myReview && (
+            <View style={styles.buttonsRow}>
+              <Pressable
+                style={[styles.button, styles.viewButton]}
+                onPress={navigateToRepository}
+              >
+                <Text fontWeight="bold" color="secondary">
+                  View Repository
+                </Text>
+              </Pressable>
+              <Pressable
+                style={[styles.button, styles.deleteButton]}
+                onPress={() => confirmDelete(review.id)}
+              >
+                <Text fontWeight="bold" color="secondary">
+                  Delete Review
+                </Text>
+              </Pressable>
+            </View>
+          )}
+        </View>
       </View>
     </View>
-  </View>
   );
 };
 
-export default ReviewItem
+export default ReviewItem;

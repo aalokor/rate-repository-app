@@ -1,6 +1,6 @@
 import { StyleSheet } from 'react-native';
 import { Link } from 'react-router-native';
-import Text from '../Text'
+import Text from '../Text';
 
 const styles = StyleSheet.create({
   tab: {
@@ -11,10 +11,11 @@ const styles = StyleSheet.create({
 const AppBarTab = ({ label, to }) => {
   return (
     <Link to={to} style={styles.tab} underlayColor="transparent">
-      <Text color="secondary" fontWeight="bold">{label}</Text>
+      <Text color="secondary" fontWeight="bold">
+        {label}
+      </Text>
     </Link>
   );
 };
 
 export default AppBarTab;
-

@@ -33,9 +33,7 @@ const RepositoryHeader = ({ repository }) => (
       <Text color="textSecondary">{repository.description}</Text>
 
       <View style={styles.languageBadge}>
-        <Text color="secondary">
-          {repository.language}
-        </Text>
+        <Text color="secondary">{repository.language}</Text>
       </View>
     </View>
   </View>

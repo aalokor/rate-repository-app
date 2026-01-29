@@ -1,5 +1,5 @@
 import { render, screen, within } from '@testing-library/react-native';
-import { RepositoryListContainer } from "../../components/RepositoryList/RepositoryList";
+import { RepositoryListContainer } from '../../components/RepositoryList/RepositoryList';
 
 describe('RepositoryList', () => {
   describe('RepositoryListContainer', () => {
@@ -46,38 +46,39 @@ describe('RepositoryList', () => {
           },
         ],
       };
-			const repositories = repositories_raw.edges.map(edge => edge.node);
+      const repositories = repositories_raw.edges.map((edge) => edge.node);
 
-			render(
-        <RepositoryListContainer
-          repositories={repositories}
-          loading={false}
-        />
+      render(
+        <RepositoryListContainer repositories={repositories} loading={false} />,
       );
 
       const repositoryItems = await screen.findAllByTestId('repositoryItem');
       const [firstRepositoryItem, secondRepositoryItem] = repositoryItems;
 
-			const firstItem = within(firstRepositoryItem);
-			const secondItem = within(secondRepositoryItem);
-		
-			expect(firstItem.getByText('jaredpalmer/formik')).toBeTruthy();
-			expect(firstItem.getByText('Build forms in React, without the tears')).toBeTruthy();
-			expect(firstItem.getByText('TypeScript')).toBeTruthy();
+      const firstItem = within(firstRepositoryItem);
+      const secondItem = within(secondRepositoryItem);
 
-			expect(firstItem.getByText('1.6k')).toBeTruthy();   
-			expect(firstItem.getByText('21.9k')).toBeTruthy(); 
-			expect(firstItem.getByText('88')).toBeTruthy();     
-			expect(firstItem.getByText('3')).toBeTruthy(); 
+      expect(firstItem.getByText('jaredpalmer/formik')).toBeTruthy();
+      expect(
+        firstItem.getByText('Build forms in React, without the tears'),
+      ).toBeTruthy();
+      expect(firstItem.getByText('TypeScript')).toBeTruthy();
 
-			expect(secondItem.getByText('async-library/react-async')).toBeTruthy();
-			expect(secondItem.getByText('Flexible promise-based React data loader')).toBeTruthy();
-			expect(secondItem.getByText('JavaScript')).toBeTruthy();
+      expect(firstItem.getByText('1.6k')).toBeTruthy();
+      expect(firstItem.getByText('21.9k')).toBeTruthy();
+      expect(firstItem.getByText('88')).toBeTruthy();
+      expect(firstItem.getByText('3')).toBeTruthy();
 
-			expect(secondItem.getByText('69')).toBeTruthy();
-			expect(secondItem.getByText('1.8k')).toBeTruthy();
-			expect(secondItem.getByText('72')).toBeTruthy();
-			expect(secondItem.getByText('3')).toBeTruthy()						
+      expect(secondItem.getByText('async-library/react-async')).toBeTruthy();
+      expect(
+        secondItem.getByText('Flexible promise-based React data loader'),
+      ).toBeTruthy();
+      expect(secondItem.getByText('JavaScript')).toBeTruthy();
+
+      expect(secondItem.getByText('69')).toBeTruthy();
+      expect(secondItem.getByText('1.8k')).toBeTruthy();
+      expect(secondItem.getByText('72')).toBeTruthy();
+      expect(secondItem.getByText('3')).toBeTruthy();
     });
   });
 });

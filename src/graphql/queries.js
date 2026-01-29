@@ -28,15 +28,9 @@ export const GET_REPOSITORIES = gql`
   }
 `;
 
-
 export const SIGN_IN = gql`
   mutation Authenticate($username: String!, $password: String!) {
-    authenticate(
-      credentials: {
-        username: $username
-        password: $password
-      }
-    ) {
+    authenticate(credentials: { username: $username, password: $password }) {
       accessToken
     }
   }
@@ -132,6 +126,6 @@ export const CREATE_USER = gql`
 
 export const DELETE_REVIEW = gql`
   mutation DeleteReview($id: ID!) {
-    deleteReview(id: $id) 
-    }
+    deleteReview(id: $id)
+  }
 `;
