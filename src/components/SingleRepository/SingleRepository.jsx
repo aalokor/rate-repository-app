@@ -1,24 +1,22 @@
 import { FlatList } from 'react-native';
 import { useParams } from 'react-router-native';
-import { useQuery } from '@apollo/client';
-import { GET_REPOSITORY } from '../../graphql/queries';
 import Text from '../Text';
 import ReviewItem from './ReviewItem';
 import RepositoryInfo from './RepositoryInfo';
+import useRepository from '../../hooks/useRepository';
 
 const SingleRepository = () => {
   const { id } = useParams();
+  const { repository, loading, fetchMore } = useRepository(id);
 
-  const { data, loading } = useQuery(GET_REPOSITORY, {
-    fetchPolicy: 'cache-and-network',
-    variables: { id },
-  });
+  const onEndReach = () => {
+    fetchMore();
+  };
 
   if (loading) {
     return <Text fontWeight="bold">Loading...</Text>;
   }
 
-  const repository = data.repository;
   const reviews = repository.reviews.edges.map((edge) => edge.node);
 
   return (
@@ -28,6 +26,8 @@ const SingleRepository = () => {
       keyExtractor={(item) => item.id}
       ListHeaderComponent={() => <RepositoryInfo id={id} />}
       ListHeaderComponentStyle={{ marginBottom: 10 }}
+      onEndReached={onEndReach}
+      onEndReachedThreshold={0.5}
     />
   );
 };

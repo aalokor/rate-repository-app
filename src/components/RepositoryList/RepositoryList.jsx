@@ -25,7 +25,14 @@ const RepositoryList = () => {
   const [order, setOrder] = useState('createdAt');
   const [search, setSearch] = useState('');
   const [debouncedSearch] = useDebounce(search, 500);
-  const { repositories, loading } = useRepositories(order, debouncedSearch);
+  const { repositories, loading, fetchMore } = useRepositories(
+    order,
+    debouncedSearch,
+  );
+
+  const onEndReach = () => {
+    fetchMore();
+  };
 
   return (
     <RepositoryListContainer
@@ -36,6 +43,7 @@ const RepositoryList = () => {
       search={search}
       setSearch={setSearch}
       navigate={navigate}
+      onEndReach={onEndReach}
     />
   );
 };
@@ -55,7 +63,7 @@ export class RepositoryListContainer extends React.Component {
   };
 
   render() {
-    const { repositories, loading, navigate } = this.props;
+    const { repositories, loading, navigate, onEndReach } = this.props;
 
     if (loading) {
       return (
@@ -76,6 +84,8 @@ export class RepositoryListContainer extends React.Component {
           </Pressable>
         )}
         ListHeaderComponent={this.renderHeader}
+        onEndReached={onEndReach}
+        onEndReachedThreshold={0.5}
       />
     );
   }
@@ -89,6 +99,7 @@ RepositoryListContainer.defaultProps = {
   order: 'createdAt',
   repositories: [],
   loading: false,
+  onEndReach: () => {},
 };
 
 export default RepositoryList;

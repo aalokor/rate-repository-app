@@ -48,9 +48,7 @@ describe('RepositoryList', () => {
       };
       const repositories = repositories_raw.edges.map((edge) => edge.node);
 
-      render(
-        <RepositoryListContainer repositories={repositories} loading={false} />,
-      );
+      render(<RepositoryListContainer repositories={repositories} />);
 
       const repositoryItems = await screen.findAllByTestId('repositoryItem');
       const [firstRepositoryItem, secondRepositoryItem] = repositoryItems;
