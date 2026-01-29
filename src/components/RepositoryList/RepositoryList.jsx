@@ -5,7 +5,7 @@ import { useDebounce } from 'use-debounce';
 import RepositoryItem from '../RepositoryItem/RepositoryItem';
 import useRepositories from '../../hooks/useRepositories';
 import RepositoryListHeader from './RepositoryListHeader';
-import Text from '../Text';
+import Text from '../BaseComponents/Text';
 
 const styles = StyleSheet.create({
   separator: {

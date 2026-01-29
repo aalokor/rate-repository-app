@@ -1,6 +1,6 @@
 import { FlatList } from 'react-native';
 import { useParams } from 'react-router-native';
-import Text from '../Text';
+import Text from '../BaseComponents/Text';
 import ReviewItem from './ReviewItem';
 import RepositoryInfo from './RepositoryInfo';
 import useRepository from '../../hooks/useRepository';

@@ -3,7 +3,7 @@ import Constants from 'expo-constants';
 import AppBarTab from './AppBarTab';
 import { useQuery } from '@apollo/client';
 import { USER } from '../../graphql/queries';
-import Text from '../Text';
+import Text from '../BaseComponents/Text';
 
 const styles = StyleSheet.create({
   container: {

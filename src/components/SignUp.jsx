@@ -1,10 +1,10 @@
 import { View, StyleSheet } from 'react-native';
 import { useFormik } from 'formik';
-import Button from './Button';
+import Button from './BaseComponents/Button';
 import * as yup from 'yup';
 import useSignIn from '../hooks/useSignIn';
 import { useNavigate } from 'react-router-native';
-import FormField from './FormField';
+import FormField from './BaseComponents/FormField';
 import { useMutation } from '@apollo/client';
 import { CREATE_USER } from '../graphql/queries';
 

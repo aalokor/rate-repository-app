@@ -1,7 +1,7 @@
 import { View, StyleSheet, Pressable } from 'react-native';
 import RepositoryHeader from './RepositoryHeader';
 import RepositoryBody from './RepositoryBody';
-import Text from '../Text';
+import Text from '../BaseComponents/Text';
 import * as Linking from 'expo-linking';
 
 const styles = StyleSheet.create({

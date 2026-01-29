@@ -1,23 +1,25 @@
 import { View, TextInput, StyleSheet } from 'react-native';
 import Text from './Text';
 
+import theme from '../../theme';
+
 const styles = StyleSheet.create({
   container: {
     marginBottom: 10,
   },
   input: {
     borderWidth: 1,
-    borderColor: '#ccc',
+    borderColor: theme.colors.inputBorder,
     borderRadius: 6,
     paddingHorizontal: 12,
     paddingVertical: 10,
     fontSize: 16,
   },
   inputError: {
-    borderColor: '#d73a4a',
+    borderColor: theme.colors.error,
   },
   errorText: {
-    color: '#d73a4a',
+    color: theme.colors.error,
     marginTop: 4,
   },
 });

@@ -1,8 +1,9 @@
-import { View, StyleSheet, Pressable, Alert } from 'react-native';
+import { View, StyleSheet, Alert } from 'react-native';
 import { useNavigate } from 'react-router-native';
 import { useMutation } from '@apollo/client';
 import { DELETE_REVIEW } from '../../graphql/queries';
-import Text from '../Text';
+import Text from '../BaseComponents/Text';
+import Button from '../BaseComponents/Button';
 
 const styles = StyleSheet.create({
   container: {
@@ -32,22 +33,7 @@ const styles = StyleSheet.create({
   buttonsRow: {
     flexDirection: 'row',
     marginTop: 10,
-    justifyContent: 'space-between',
-  },
-  button: {
-    paddingVertical: 10,
-    borderRadius: 4,
-    alignItems: 'center',
-    justifyContent: 'center',
-    marginRight: 10,
-    paddingHorizontal: 12,
-    flex: 1,
-  },
-  viewButton: {
-    backgroundColor: '#0366d6',
-  },
-  deleteButton: {
-    backgroundColor: '#d73a4a',
+    gap: 10,
   },
 });
 
@@ -111,22 +97,17 @@ const ReviewItem = ({ review, refetch = () => {}, myReview = false }) => {
           <Text style={{ marginTop: 6 }}>{review.text}</Text>
           {myReview && (
             <View style={styles.buttonsRow}>
-              <Pressable
-                style={[styles.button, styles.viewButton]}
+              <Button
+                label="View Repository"
+                button="ButtonSecondary"
                 onPress={navigateToRepository}
-              >
-                <Text fontWeight="bold" color="secondary">
-                  View Repository
-                </Text>
-              </Pressable>
-              <Pressable
-                style={[styles.button, styles.deleteButton]}
+              />
+              <Button
+                label="Delete Review"
+                button="ButtonSecondary"
+                color="buttonRed"
                 onPress={() => confirmDelete(review.id)}
-              >
-                <Text fontWeight="bold" color="secondary">
-                  Delete Review
-                </Text>
-              </Pressable>
+              />
             </View>
           )}
         </View>

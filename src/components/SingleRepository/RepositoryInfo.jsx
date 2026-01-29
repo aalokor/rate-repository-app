@@ -1,7 +1,7 @@
 import { useQuery } from '@apollo/client';
 import RepositoryItem from '../RepositoryItem/RepositoryItem';
 import { GET_REPOSITORY } from '../../graphql/queries';
-import Text from '../Text';
+import Text from '../BaseComponents/Text';
 
 const RepositoryInfo = ({ id }) => {
   const { data, loading } = useQuery(GET_REPOSITORY, {

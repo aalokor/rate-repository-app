@@ -6,6 +6,10 @@ const theme = {
     textSecondary: '#586069',
     primary: '#0366d6',
     secondary: '#ffffff',
+    error: '#d73a4a',
+    inputBorder: '#ccc',
+    buttonPrimary: '#0366d6',
+    buttonSecondary: '#d73a4a',
   },
   fontSizes: {
     body: 14,
