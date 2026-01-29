@@ -5,7 +5,7 @@ import Text from './Text';
 import ReviewItem from './SingleRepository/ReviewItem';
 
 const MyReviews = () => {
-  const { data, loading } = useQuery(USER, {
+  const { data, loading, refetch } = useQuery(USER, {
     variables: { includeReviews: true },
     fetchPolicy: 'cache-and-network',
   });
@@ -25,7 +25,7 @@ const MyReviews = () => {
   return (
     <FlatList
       data={reviews}
-      renderItem={({ item }) => <ReviewItem review={item} />}
+      renderItem={({ item }) => <ReviewItem review={item} refetch={refetch} myReview={true} />}
       keyExtractor={(item) => item.id}
     />
   );

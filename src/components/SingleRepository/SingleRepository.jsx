@@ -19,7 +19,6 @@ const SingleRepository = () => {
   }
 
   const repository = data.repository;
-
   const reviews = repository.reviews.edges.map(edge => edge.node);
 
   return (
