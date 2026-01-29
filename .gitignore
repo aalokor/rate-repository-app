@@ -36,6 +36,7 @@ yarn-error.*
 
 # Ignore the Windows UUS State folder
 C:/ProgramData/Microsoft/Windows/UUS/State/
+%ProgramData%
 .env
 .prettierrc
 .prettierignore
